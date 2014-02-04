@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Shortner::Application.load_tasks
+UrlShortener::Application.load_tasks

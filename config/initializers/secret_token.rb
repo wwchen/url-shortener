@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shortner::Application.config.secret_key_base = 'ae7f20c0504bb74fa21fac1eb4a3021aebe6953e5e2ae00939d7ec58fa9656b6717ff6785539b205d7f263b97cf7d502a5bd58245b1206259bc3582003d610fe'
+UrlShortener::Application.config.secret_key_base = '7de7653032d8585d3c723af6d0546c6b15264c9a2645b6e79daaa0299a31fb2e8debac6eab666dde657fa550c80419e3da015f54f104de59827c0cff1c97795a'

@@ -1,6 +1,20 @@
 class UrlsController < ApplicationController
   before_action :set_url, only: [:show, :edit, :update, :destroy]
 
+  # redirection
+  def redirect
+    @url = Url.find_by(alias: params['id'])
+
+    if @url
+      # increment view count
+      @url.update(views: @url.views + 1)
+      redirect_to @url.href, status: 301
+    else
+      index
+      redirect_to Url, notice: params[:id] + ' does not exist'
+    end
+  end
+
   # GET /urls
   # GET /urls.json
   def index
@@ -25,6 +39,16 @@ class UrlsController < ApplicationController
   # POST /urls.json
   def create
     @url = Url.new(url_params)
+
+    # if alias is left blank, then we should reuse the alias if one is already created
+    if @url.alias.chomp.empty?
+      result = Url.find_by href: @url.href
+      if not result.nil?
+        @url = result
+        redirect_to @url, notice: 'One is already created'
+        return
+      end
+    end
 
     respond_to do |format|
       if @url.save
@@ -69,6 +93,6 @@ class UrlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
-      params.require(:url).permit(:original, :compressed, :views)
+      params.require(:url).permit(:href, :alias, :views)
     end
 end

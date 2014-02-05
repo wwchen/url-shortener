@@ -18,7 +18,7 @@ class UrlsControllerTest < ActionController::TestCase
 
   test "should create url" do
     assert_difference('Url.count') do
-      post :create, url: { compressed: @url.compressed, original: @url.original, views: @url.views }
+      post :create, url: { alias: @url.alias, href: @url.href, views: @url.views }
     end
 
     assert_redirected_to url_path(assigns(:url))
@@ -35,7 +35,7 @@ class UrlsControllerTest < ActionController::TestCase
   end
 
   test "should update url" do
-    patch :update, id: @url, url: { compressed: @url.compressed, original: @url.original, views: @url.views }
+    patch :update, id: @url, url: { alias: @url.alias, href: @url.href, views: @url.views }
     assert_redirected_to url_path(assigns(:url))
   end
 

@@ -1,12 +1,12 @@
 class CreateUrls < ActiveRecord::Migration
   def change
     create_table :urls do |t|
-      t.text :original
-      t.text :compressed
-      t.integer :views
+      t.string :href
+      t.string :alias
+      t.integer :views, default: 0
 
       t.timestamps
     end
-    add_index :urls, :compressed, unique: true
+    add_index :urls, :alias, unique: true
   end
 end

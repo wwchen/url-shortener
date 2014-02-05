@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Original:</strong>
-  <%= @url.original %>
+  <strong>Location:</strong>
+  <%= link_to @url.href %>
 </p>
 
 <p>
-  <strong>Compressed:</strong>
-  <%= @url.compressed %>
+  <strong>Alias:</strong>
+  <%= link_to @url.alias, root_url + @url.alias %>
 </p>
 
 <p>

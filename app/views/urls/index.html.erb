@@ -1,10 +1,11 @@
 <h1>Listing urls</h1>
+<p id="notice"><%= notice %></p>
 
 <table>
   <thead>
     <tr>
-      <th>Original</th>
-      <th>Compressed</th>
+      <th>Location</th>
+      <th>Alias</th>
       <th>Views</th>
       <th></th>
       <th></th>
@@ -15,8 +16,8 @@
   <tbody>
     <% @urls.each do |url| %>
       <tr>
-        <td><%= url.original %></td>
-        <td><%= url.compressed %></td>
+        <td><%= link_to url.href %></td>
+        <td><%= link_to url.alias, root_url + url.alias %></td>
         <td><%= url.views %></td>
         <td><%= link_to 'Show', url %></td>
         <td><%= link_to 'Edit', edit_url_path(url) %></td>

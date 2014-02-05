@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :original %><br>
-    <%= f.text_area :original %>
+    <%= f.label :href %><br>
+    <%= f.text_area :href %>
   </div>
   <div class="field">
-    <%= f.label :compressed %><br>
-    <%= f.text_area :compressed %>
+    <%= f.label :alias %><br>
+    <%= f.text_area :alias %>
   </div>
   <div class="field">
     <%= f.label :views %><br>
-    <%= f.number_field :views %>
+    <%= f.number_field :views, disabled: true %>
   </div>
   <div class="actions">
     <%= f.submit %>

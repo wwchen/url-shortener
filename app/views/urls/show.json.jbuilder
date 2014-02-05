@@ -1,1 +1,1 @@
-json.extract! @url, :id, :original, :compressed, :views, :created_at, :updated_at
+json.extract! @url, :id, :href, :alias, :views, :created_at, :updated_at

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Original:</strong>
+  <%= @url.original %>
+</p>
+
+<p>
+  <strong>Compressed:</strong>
+  <%= @url.compressed %>
+</p>
+
+<p>
+  <strong>Views:</strong>
+  <%= @url.views %>
+</p>
+
+<%= link_to 'Edit', edit_url_path(@url) %> |
+<%= link_to 'Back', urls_path %>

@@ -6,6 +6,11 @@ class Url < ActiveRecord::Base
                     presence: true
   validates :views, numericality: { only_integer: true }
 
+  def alias_url
+    #root_url + self.alias
+    self.alias
+  end
+
   before_validation do 
     self.alias.chomp!
     if self.alias.empty?
@@ -14,6 +19,12 @@ class Url < ActiveRecord::Base
         str = generate_random_string
         break str unless Url.exists? alias: str
       end
+    end
+  end
+
+  before_save do
+    if self.alias_changed?
+      self.views = 0
     end
   end
 

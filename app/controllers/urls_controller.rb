@@ -1,9 +1,9 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:show, :edit, :update, :destroy]
+  before_action :set_url, only: [:edit, :update, :destroy]
 
   # redirection
   def redirect
-    @url = Url.find_by(alias: params['id'])
+    @url = Url.find_by(alias: params['alias'])
 
     if @url
       # increment view count
@@ -11,7 +11,7 @@ class UrlsController < ApplicationController
       redirect_to @url.href, status: 301
     else
       index
-      redirect_to Url, notice: params[:id] + ' does not exist'
+      redirect_to Url, error: params[:id].to_s + ' does not exist'
     end
   end
 
@@ -21,9 +21,9 @@ class UrlsController < ApplicationController
     @urls = Url.all
   end
 
-  # GET /urls/1
-  # GET /urls/1.json
-  def show
+  # GET
+  def splash
+    @url = Url.new
   end
 
   # GET /urls/new
@@ -52,8 +52,8 @@ class UrlsController < ApplicationController
 
     respond_to do |format|
       if @url.save
-        format.html { redirect_to @url, notice: 'Url was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @url }
+        format.html { redirect_to @url, success: 'Url was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @url }
       else
         format.html { render action: 'new' }
         format.json { render json: @url.errors, status: :unprocessable_entity }
@@ -62,16 +62,11 @@ class UrlsController < ApplicationController
   end
 
   # PATCH/PUT /urls/1
-  # PATCH/PUT /urls/1.json
   def update
-    respond_to do |format|
-      if @url.update(url_params)
-        format.html { redirect_to @url, notice: 'Url was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
-      end
+    if @url.update(url_params)
+      redirect_to @url, success: 'URL was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 

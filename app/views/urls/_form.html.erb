@@ -1,6 +1,6 @@
-<%= form_for(@url) do |f| %>
+<%= form_for(@url, html: {role: 'form'}, class: 'form-horizontal') do |f| %>
   <% if @url.errors.any? %>
-    <div id="error_explanation">
+    <div class='alert alert-danger'>
       <h2><%= pluralize(@url.errors.count, "error") %> prohibited this url from being saved:</h2>
 
       <ul>
@@ -11,19 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :href %><br>
-    <%= f.text_area :href %>
+  <style>
+    .underlined-control, .underlined-control:focus {
+      border: none;
+      box-shadow: 0 0;
+      -webkit-box-shadow: 0 0;
+      border-bottom: 1px solid black;
+    }
+  </style>
+
+  <div class="form-group">
+    <%= f.label :href, "Original link", class: 'col-md-2 control-label' %>
+    <div class="col-md-10">
+      <%= f.text_field :href, type: 'url', class: 'form-control underlined-control' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :alias %><br>
-    <%= f.text_area :alias %>
+
+  <div class="form-group">
+    <%= f.label :alias, "Custom alias", class: 'col-md-2 control-label'  %><br>
+    <div class="col-md-10">
+      <%= root_url %>
+      <%= f.text_field :alias, class: 'form-control underlined-control', style: "display: inline; width: initial", size: 12 %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :views %><br>
-    <%= f.number_field :views, disabled: true %>
+
+  <div class="form-group">
+    <%= f.label :views, class: 'col-md-2 control-label' %><br>
+    <div class="col-md-10">
+      <%= f.number_field :views, disabled: true, type: 'number', class: 'form-control', style: 'width: initial', size: 2 %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit("Update", class: 'btn btn-default btn-lg') %>
   </div>
 <% end %>

@@ -21,11 +21,6 @@ class UrlsController < ApplicationController
     @urls = Url.all
   end
 
-  # GET
-  def splash
-    @url = Url.new
-  end
-
   # GET /urls/new
   def new
     @url = Url.new

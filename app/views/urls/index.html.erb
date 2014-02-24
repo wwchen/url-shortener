@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <h1>Listing urls</h1>
+</div>
+
+<% if defined? success and success %>
+  <div class="alert alert-success"><%= success %></div>
+<% end %>
+<% if defined? notice and notice %>
+  <div class="alert alert-warning"><%= notice %></div>
+<% end %>
+<% if defined? error and error %>
+  <div class="alert alert-danger"><%= error %></div>
+<% end %>
+
+<p>
+  <%= link_to 'New Url', new_url_path, class: 'btn btn-primary', role: 'button' %>
+</p>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Original link</th>
+      <th>Shortened link</th>
+      <th>View count</th>
+      <th>Admin actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= link_to url.href, url.href %></td>
+        <td><%= link_to url.alias, root_url + url.alias %></td>
+        <td><%= url.views %></td>
+        <td><%= link_to 'Edit', edit_url_path(url) %> | 
+            <%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

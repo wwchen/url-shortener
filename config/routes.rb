@@ -1,5 +1,7 @@
 UrlShortener::Application.routes.draw do
+  post 'url' => 'url#index'
   resources :urls
+
   get ':alias' => 'urls#redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.

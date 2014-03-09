@@ -11,6 +11,7 @@ end
 group :production do
   # Use postgres instead, to make Heroku happy
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 # Use SCSS for stylesheets

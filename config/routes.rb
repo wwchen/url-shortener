@@ -1,9 +1,7 @@
 UrlShortener::Application.routes.draw do
-  resources :urls do
-    member do
-      # http://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
-    end
-  end
+  post 'url' => 'url#index'
+  # http://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
+  resources :urls
 
   get ':alias' => 'urls#redirect'
 

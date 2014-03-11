@@ -22,6 +22,7 @@
           <%= f.label(:alias, "Custom alias (optional)") %> <br>
           <%= root_url %>
           <%= f.text_field(:alias, class: 'form-control', style: 'width: 100px; display: inline') %>
+          &nbsp; <%= f.check_box(:sticky) %> Sticky?
         </div>
         <div class="actions">
           <%= f.submit("Shorten URL", class: 'btn btn-default') %>

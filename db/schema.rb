@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205062512) do
+ActiveRecord::Schema.define(version: 20140306020046) do
 
   create_table "urls", force: true do |t|
     t.string   "href"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20140205062512) do
     t.integer  "views",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sticky"
+    t.boolean  "custom"
   end
 
   add_index "urls", ["alias"], name: "index_urls_on_alias", unique: true

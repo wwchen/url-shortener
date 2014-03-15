@@ -7,7 +7,7 @@ UrlShortener::Application.routes.draw do
     end
   end
 
-  get ':alias' => 'urls#redirect'
+  get ':id' => 'urls#redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,9 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  href: MyText
-  alias: MyText
-  views: 1
+google:
+  href: https://google.com
+  alias: g
+  views: 0
+  sticky: true
+  custom: yes
+
+<% 100.times do |n| %>
+user_<%= n %>:
+  href: <%= "https://example#{n}.com" %>
+  alias: <%= "e#{n}" %>
+  sticky: <% 0 == n % 2 ? true : false %>
+<% end %>
 
 two:
   href: MyText

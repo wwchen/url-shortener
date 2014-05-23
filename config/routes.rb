@@ -3,7 +3,7 @@ UrlShortener::Application.routes.draw do
   # http://stackoverflow.com/questions/2634964/how-to-add-a-custom-restful-route-to-a-rails-app
   resources :urls do
     collection do
-      get 'splash'
+      #get 'splash'
     end
   end
 

@@ -11,14 +11,21 @@ class Url < ActiveRecord::Base
     self.alias
   end
 
-  before_validation do 
+  def to_param
+    self.alias
+  end
+
+  before_validation do
     self.alias.chomp!
     if self.alias.empty?
       # generate one
+      self.custom = false
       self.alias = loop do
         str = generate_random_string
         break str unless Url.exists? alias: str
       end
+    elsif self.alias_changed?
+      self.custom = true
     end
   end
 

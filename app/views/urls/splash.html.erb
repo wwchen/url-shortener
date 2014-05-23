@@ -1,13 +1,9 @@
-<div class='jumbotron'>
-  <h1><%= request.host %> url shortener service</h1>
-</div>
-
 <div class="row">
   <div class='col-md-12'>
     <div style='margin: 0 auto; width: 500px'>
       <%= form_for(@url, html: {role: 'form'}) do |f| %>
         <% if @url.errors.any? %>
-          <div class="alert alert-danger">
+          <div id="error_explanation">
             <h2><%= pluralize(@url.errors.count, "error") %> prohibited this url from being saved:</h2>
 
             <ul>
@@ -26,6 +22,7 @@
           <%= f.label(:alias, "Custom alias (optional)") %> <br>
           <%= root_url %>
           <%= f.text_field(:alias, class: 'form-control', style: 'width: 100px; display: inline') %>
+          &nbsp; <%= f.check_box(:sticky) %> Sticky?
         </div>
         <div class="actions">
           <%= f.submit("Shorten URL", class: 'btn btn-default') %>

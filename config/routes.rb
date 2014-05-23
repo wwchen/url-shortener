@@ -1,7 +1,11 @@
 UrlShortener::Application.routes.draw do
-  post 'url' => 'url#index'
-  # http://guides.rubyonrails.org/routing.html#creating-paths-and-urls-from-objects
-  resources :urls
+  #post 'url' => 'url#index'
+  # http://stackoverflow.com/questions/2634964/how-to-add-a-custom-restful-route-to-a-rails-app
+  resources :urls do
+    collection do
+      get 'splash'
+    end
+  end
 
   get ':alias' => 'urls#redirect'
 

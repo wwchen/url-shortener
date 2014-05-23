@@ -1,17 +1,15 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:edit, :update, :destroy]
+  before_action :set_url, only: [:edit, :update, :destroy, :redirect]
 
   # redirection
   def redirect
-    @url = Url.find_by(alias: params['alias'])
-
     if @url
       # increment view count
       @url.update(views: @url.views + 1)
       redirect_to @url.href, status: 301
     else
       index
-      redirect_to Url, error: params[:id].to_s + ' does not exist'
+      redirect_to Url, notice: params[:id].to_s + ' does not exist'
     end
   end
 
@@ -30,6 +28,10 @@ class UrlsController < ApplicationController
   def edit
   end
 
+  def show
+    redirect_to Url, notice: "URL updated!"
+  end
+
   # POST /urls
   # POST /urls.json
   def create
@@ -45,14 +47,10 @@ class UrlsController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      if @url.save
-        format.html { redirect_to @url, success: 'Url was successfully created.' }
-        format.json { render action: 'index', status: :created, location: @url }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
-      end
+    if @url.save
+      redirect_to @url, success: 'URL was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
@@ -78,11 +76,11 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find(params[:id])
+      @url = Url.find_by(alias: params['id'])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
-      params.require(:url).permit(:href, :alias, :views)
+      params.require(:url).permit(:href, :alias, :views, :sticky)
     end
 end

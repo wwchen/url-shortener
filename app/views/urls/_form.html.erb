@@ -41,6 +41,13 @@
       <%= f.number_field :views, disabled: true, type: 'number', class: 'form-control', style: 'width: initial', size: 2 %>
     </div>
   </div>
+
+  <div class="form-group">
+    <%= f.label :sticky, class: 'col-md-2 control-label' %><br>
+    <div class="col-md-10">
+      <%= f.check_box :sticky, class: 'form-control' %>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit("Update", class: 'btn btn-default btn-lg') %>
   </div>

@@ -13,7 +13,7 @@
 <% end %>
 
 <p>
-  <%= link_to 'New Url', new_url_path, class: 'btn btn-primary', role: 'button' %>
+  <%= link_to 'New Url', splash_urls_path, class: 'btn btn-primary', role: 'button' %>
 </p>
 
 <table class="table table-striped table-hover">
@@ -22,6 +22,7 @@
       <th>Original link</th>
       <th>Shortened link</th>
       <th>View count</th>
+      <th>Custom</th>
       <th>Admin actions</th>
     </tr>
   </thead>
@@ -32,8 +33,10 @@
         <td><%= link_to url.href, url.href %></td>
         <td><%= link_to url.alias, root_url + url.alias %></td>
         <td><%= url.views %></td>
-        <td><%= link_to 'Edit', edit_url_path(url) %> | 
-            <%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= url.custom %></td>
+        <td><%= link_to 'Edit', edit_url_path(url) %>
+            <% unless url.sticky? %> | <%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %> <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -66,10 +66,10 @@ class UrlsController < ApplicationController
   # DELETE /urls/1
   # DELETE /urls/1.json
   def destroy
-    @url.destroy
-    respond_to do |format|
-      format.html { redirect_to urls_url }
-      format.json { head :no_content }
+    if @url.destroy
+      redirect_to Url, notice: 'Url destroyed' #urls_url
+    else
+      redirect_to Url, notice: 'Error in destroy'
     end
   end
 

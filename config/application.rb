@@ -23,5 +23,6 @@ module UrlShortener
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       "<div class=\"bg-danger\">#{html_tag}</div>".html_safe
     }
+    config.serve_static_assets = true
   end
 end

@@ -12,6 +12,8 @@ group :production do
   # Use postgres instead, to make Heroku happy
   gem 'pg'
   gem 'newrelic_rpm'
+  # serve static assets
+  gem 'rails_12factor'
 end
 
 # Use SCSS for stylesheets
